@@ -20,11 +20,10 @@ FileList.propTypes = {
 
 const FileListItem = ({ file }) => (
     <tr className="file-list-item">
-        <FileName file={file} />
-        <CommitMessage commit={file.latestCommit} />
-        <td className="age">
-            <Time time={file.updated_at} />
-        </td>
+        <td><FileIcon file={file} /></td>
+        <td><FileName file={file} /></td>
+        <td><CommitMessage commit={file.latestCommit} /></td>
+        <td className="age"><Time time={file.updated_at} /></td>
     </tr>
 );
 FileListItem.propTypes = {
@@ -38,9 +37,9 @@ function FileIcon({ file }) {
     }
 
     return (
-        <td className="file-icon">
+        <div className="file-icon">
             <i className={`fa ${icon}`} />
-        </td>
+        </div>
     )
 }
 FileIcon.propTypes = {
@@ -49,10 +48,9 @@ FileIcon.propTypes = {
 
 function FileName({ file }) {
     return (
-        <>
-            <FileIcon file={file}/>
-            <td className="file-name">{file.name}</td>
-        </>
+        <div>
+            {file.name}
+        </div>
     );
 }
 FileName.propTypes = {
@@ -60,9 +58,9 @@ FileName.propTypes = {
 };
 
 const CommitMessage = ({ commit }) => (
-    <td className="commit-message">
+    <div className="commit-message">
         {commit.message} 
-    </td>
+    </div>
 )
 CommitMessage.propTypes = {
     commit: PropTypes.object.isRequired
